@@ -11,12 +11,12 @@ def get_mac():
 
 root = tk.Tk()
 root.title("HWID and MAC Address Viewer")
-root.configure(bg='black')
+root.geometry("300x100")
 
-hwid_label = tk.Label(root, text="HWID: " + get_hwid(), fg='white', bg='black')
+hwid_label = tk.Label(root, text="HWID: " + get_hwid())
 hwid_label.pack()
 
-mac_label = tk.Label(root, text="MAC Address: " + get_mac(), fg='white', bg='black')
+mac_label = tk.Label(root, text="MAC Address: " + get_mac())
 mac_label.pack()
 
 root.mainloop()

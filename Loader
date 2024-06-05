@@ -1,3 +1,4 @@
+import tkinter as tk
 import subprocess
 
 def spoof_hwid():
@@ -8,13 +9,15 @@ def display_hwid():
     # Code to display current HWID
     subprocess.run(["display_hwid.exe"])
 
-if __name__ == "__main__":
-    while True:
-        choice = input("Choose an action - 1. Spoof HWID, 2. Display HWID: ")
+# Create GUI window
+root = tk.Tk()
+root.title("LFaU - HWID Spoofer Black Box")
 
-        if choice == "1":
-            spoof_hwid()
-        elif choice == "2":
-            display_hwid()
-        else:
-            print("Invalid choice. Please choose again.")
+# Create buttons
+spoof_button = tk.Button(root, text="Spoof HWID", command=spoof_hwid)
+spoof_button.pack()
+
+display_button = tk.Button(root, text="Display HWID", command=display_hwid)
+display_button.pack()
+
+root.mainloop()

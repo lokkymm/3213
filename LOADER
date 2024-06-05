@@ -35,27 +35,27 @@ def spoof_hwid():
     new_hwid = get_random_hwid()
     hwid_label.config(text=f"Current HWID: {new_hwid}")
 
-root = tk.Tk()
-root.title("LFAUware Login Page")
-root.geometry("300x250")
-root.withdraw()  # Hide the main window
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.title("LFAUware Login Page")
+    root.geometry("300x250")
 
-username_label = tk.Label(root, text="Username:")
-username_label.pack(pady=10)
+    username_label = tk.Label(root, text="Username:")
+    username_label.pack(pady=10)
 
-username_entry = tk.Entry(root)
-username_entry.pack()
+    username_entry = tk.Entry(root)
+    username_entry.pack()
 
-password_label = tk.Label(root, text="Password:")
-password_label.pack(pady=10)
+    password_label = tk.Label(root, text="Password:")
+    password_label.pack(pady=10)
 
-password_entry = tk.Entry(root, show="*")
-password_entry.pack()
+    password_entry = tk.Entry(root, show="*")
+    password_entry.pack()
 
-login_button = tk.Button(root, text="Login", command=check_credentials)
-login_button.pack(pady=10)
+    login_button = tk.Button(root, text="Login", command=check_credentials)
+    login_button.pack(pady=10)
 
-login_status = tk.Label(root, text="", fg="black")
-login_status.pack(pady=10)
+    login_status = tk.Label(root, text="", fg="black")
+    login_status.pack(pady=10)
 
-root.mainloop()
+    root.mainloop()

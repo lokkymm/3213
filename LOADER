@@ -1,61 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-  .container {
-    width: 300px;
-    height: 200px;
-    background-color: black;
-    position: relative;
-    margin: 0 auto;
-    margin-top: 100px;
-    padding: 20px;
-  }
-  .close {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    color: white;
-    cursor: pointer;
-  }
-  .button {
-    background-color: blue;
-    color: white;
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-  }
-</style>
-</head>
-<body>
+import subprocess
 
-<div class="container">
-  <span class="close">X</span>
-  <button class="button" id="spoofButton">Spoof</button>
-  <button class="button" id="hwidButton">HWID</button>
-</div>
+def spoof_hwid():
+    # Code to spoof all PC parts HWID
+    subprocess.run(["spoof.exe"])
 
-<script>
-  const spoofButton = document.getElementById('spoofButton');
-  const hwidButton = document.getElementById('hwidButton');
+def display_hwid():
+    # Code to display current HWID
+    subprocess.run(["display_hwid.exe"])
 
-  spoofButton.addEventListener('click', () => {
-    // Perform HWID spoofing action here
-    alert('HWID spoofing in progress...');
-  });
+if __name__ == "__main__":
+    while True:
+        choice = input("Choose an action - 1. Spoof HWID, 2. Display HWID: ")
 
-  hwidButton.addEventListener('click', () => {
-    // Display HWID action here
-    alert('Your HWID is: ABCDEF123456');
-  });
-
-  const closeButton = document.querySelector('.close');
-  const container = document.querySelector('.container');
-
-  closeButton.addEventListener('click', () => {
-    container.style.display = 'none';
-  });
-</script>
-
-</body>
-</html>
+        if choice == "1":
+            spoof_hwid()
+        elif choice == "2":
+            display_hwid()
+        else:
+            print("Invalid choice. Please choose again.")

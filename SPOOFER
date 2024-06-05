@@ -1,0 +1,24 @@
+import tkinter as tk
+import wmi
+import random
+import string
+
+root = tk.Tk()
+root.title("LFAUSpoofe")
+root.geometry("300x200")
+
+def get_random_hwid():
+    random_hwid = ''.join(random.choices(string.ascii_uppercase + string.digits, k=16))
+    return random_hwid
+
+hwid_label = tk.Label(root, text=f"Current HWID: {get_random_hwid()}", font=("Helvetica", 12))
+hwid_label.pack(pady=20)
+
+def spoof_hwid():
+    new_hwid = get_random_hwid()
+    hwid_label.config(text=f"Current HWID: {new_hwid}")
+
+spoof_button = tk.Button(root, text="Spoof", command=spoof_hwid)
+spoof_button.pack(pady=20)
+
+root.mainloop()

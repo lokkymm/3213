@@ -1,61 +1,61 @@
-import tkinter as tk
-import random
-import string
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .container {
+    width: 300px;
+    height: 200px;
+    background-color: black;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+  }
+  .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  .button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
 
-def get_random_hwid():
-    random_hwid = ''.join(random.choices(string.ascii_uppercase + string.digits, k=16))
-    return random_hwid
+<div class="container">
+  <span class="close">X</span>
+  <button class="button" id="spoofButton">Spoof</button>
+  <button class="button" id="hwidButton">HWID</button>
+</div>
 
-def check_credentials():
-    username = username_entry.get()
-    password = password_entry.get()
-    
-    # Add your credential checking logic here
-    if username == "admin" and password == "password":
-        login_status.config(text="Login successful!", fg="green")
-        root.withdraw()  # Hide the login window
-        show_hwid_gui()
-    else:
-        login_status.config(text="Incorrect username or password", fg="red")
+<script>
+  const spoofButton = document.getElementById('spoofButton');
+  const hwidButton = document.getElementById('hwidButton');
 
-def show_hwid_gui():
-    hwid_window = tk.Toplevel()
-    hwid_window.title("LFAUware")
-    hwid_window.geometry("300x200")
-    
-    hwid = get_random_hwid()
-    
-    hwid_label = tk.Label(hwid_window, text=f"Current HWID: {hwid}", font=("Helvetica", 12))
-    hwid_label.pack(pady=20)
+  spoofButton.addEventListener('click', () => {
+    // Perform HWID spoofing action here
+    alert('HWID spoofing in progress...');
+  });
 
-    spoof_button = tk.Button(hwid_window, text="Spoof", command=spoof_hwid)
-    spoof_button.pack(pady=20)
+  hwidButton.addEventListener('click', () => {
+    // Display HWID action here
+    alert('Your HWID is: ABCDEF123456');
+  });
 
-def spoof_hwid():
-    new_hwid = get_random_hwid()
-    hwid_label.config(text=f"Current HWID: {new_hwid}")
+  const closeButton = document.querySelector('.close');
+  const container = document.querySelector('.container');
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("LFAUware Login Page")
-    root.geometry("300x250")
+  closeButton.addEventListener('click', () => {
+    container.style.display = 'none';
+  });
+</script>
 
-    username_label = tk.Label(root, text="Username:")
-    username_label.pack(pady=10)
-
-    username_entry = tk.Entry(root)
-    username_entry.pack()
-
-    password_label = tk.Label(root, text="Password:")
-    password_label.pack(pady=10)
-
-    password_entry = tk.Entry(root, show="*")
-    password_entry.pack()
-
-    login_button = tk.Button(root, text="Login", command=check_credentials)
-    login_button.pack(pady=10)
-
-    login_status = tk.Label(root, text="", fg="black")
-    login_status.pack(pady=10)
-
-    root.mainloop()
+</body>
+</html>

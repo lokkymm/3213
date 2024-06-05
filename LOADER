@@ -1,7 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
-import os
-import wmi
 import random
 import string
 
@@ -26,9 +23,7 @@ def show_hwid_gui():
     hwid_window.title("LFAUware")
     hwid_window.geometry("300x200")
     
-    c = wmi.WMI()
-    for os in c.Win32_OperatingSystem():
-        hwid = os.SerialNumber
+    hwid = get_random_hwid()
     
     hwid_label = tk.Label(hwid_window, text=f"Current HWID: {hwid}", font=("Helvetica", 12))
     hwid_label.pack(pady=20)

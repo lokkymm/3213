@@ -12,7 +12,7 @@ def spoof_hwid():
     os.system(f'reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography" /v MachineGuid /t REG_SZ /d "{hwid}" /f')
     
     # Spoofing Network Adapter ID
-    os.system(f'reg add "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Class\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\0000" /v NetworkAddress /t REG_SZ /d "{hwid}" /f')
+    os.system(f'reg add "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Class\\{{4D36E972-E325-11CE-BFC1-08002BE10318}}\\0000" /v NetworkAddress /t REG_SZ /d "{hwid}" /f')
     
     # Spoofing Drive IDs
     drives = ['C:', 'D:', 'E:', 'F:']  # Add more drive letters as needed
@@ -21,7 +21,7 @@ def spoof_hwid():
     
     # Spoofing MAC Address
     mac_address = ':'.join(['{:02x}'.format(random.randint(0, 255)) for _ in range(6)])
-    os.system(f'reg add "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Class\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\0000" /v NetworkAddress /t REG_SZ /d "{mac_address}" /f')
+    os.system(f'reg add "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Class\\{{4D36E972-E325-11CE-BFC1-08002BE10318}}\\0000" /v NetworkAddress /t REG_SZ /d "{mac_address}" /f')
 
     print("HWID, Drives, and MAC Address Spoofed successfully!")
 

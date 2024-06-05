@@ -1,14 +1,12 @@
 import tkinter as tk
-import platform
-import subprocess
+import uuid
 
 def get_hwid():
-    hwid = platform.node()
-    return hwid
+    hwid = uuid.getnode()
+    return hex(hwid)
 
 def get_mac():
-    result = subprocess.check_output(["ipconfig", "/all"]).decode("utf-8")
-    mac = re.search(r"Physical Address[\. ]+: ([\w-]+)", result).group(1)
+    mac = ':'.join(['{:02x}'.format((uuid.getnode() >> elements) & 0xff) for elements in range(0,2*6,2)][::-1])
     return mac
 
 root = tk.Tk()

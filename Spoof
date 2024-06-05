@@ -1,31 +1,28 @@
-import tkinter as tk
 import os
 import random
 import string
 
-def get_current_hwid():
-    # Retrieve and return the current HWID
-    hwid = "ABCD1234EFGH5678"  # Replace this with actual code to fetch HWID
-    return hwid
-
 def spoof_hwid():
     hwid = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
     
-    # Code to spoof CPU ID, Disk ID, Network Adapter ID, drive IDs, and MAC address
-    # Add the necessary code to spoof these components here
+    # Spoofing CPU ID
+    os.system(f'reg add "HKEY_LOCAL_MACHINE\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0" /v ProcessorNameString /t REG_SZ /d "{hwid}" /f')
     
+    # Spoofing Disk ID
+    os.system(f'reg add "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography" /v MachineGuid /t REG_SZ /d "{hwid}" /f')
+    
+    # Spoofing Network Adapter ID
+    os.system(f'reg add "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Class\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\0000" /v NetworkAddress /t REG_SZ /d "{hwid}" /f')
+    
+    # Spoofing Drive IDs
+    drives = ['C:', 'D:', 'E:', 'F:']  # Add more drive letters as needed
+    for drive in drives:
+        os.system(f'reg add "HKEY_LOCAL_MACHINE\\SYSTEM\\MountedDevices" /v \\DosDevices\\{drive} /t REG_BINARY /d {hwid.encode("utf-16le").hex()} /f')
+    
+    # Spoofing MAC Address
+    mac_address = ':'.join(['{:02x}'.format(random.randint(0, 255)) for _ in range(6)])
+    os.system(f'reg add "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Class\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\0000" /v NetworkAddress /t REG_SZ /d "{mac_address}" /f')
+
     print("HWID, Drives, and MAC Address Spoofed successfully!")
 
-# Create GUI window
-root = tk.Tk()
-root.title("HWID Spoofer")
-
-# Display current HWID
-current_hwid_label = tk.Label(root, text="Current HWID: " + get_current_hwid())
-current_hwid_label.pack()
-
-# Button to spoof HWID
-spoof_button = tk.Button(root, text="Spoof HWID", command=spoof_hwid)
-spoof_button.pack()
-
-root.mainloop()
+spoof_hwid()
